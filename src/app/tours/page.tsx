@@ -1,5 +1,5 @@
 // src/app/tours/page
-export const dynamic = 'force-dynamic';
+
 import { RecommendedTour } from '@/components/RecommendedTour';
 import { getStoryblokApi } from '@storyblok/react';
 import { StoryblokStory } from '@storyblok/react/rsc';
@@ -7,7 +7,7 @@ import { StoryblokStory } from '@storyblok/react/rsc';
 const fetchToursPage = async () => {
   const client = getStoryblokApi();
   const response = await client.getStory('tours', {
-    version: 'draft',
+    version: process.env.NODE_ENV === 'development' ? 'draft' : 'published',
   });
   return response.data.story;
 };
@@ -16,7 +16,7 @@ const fetchAllTours = async () => {
   const client = getStoryblokApi();
   const response = await client.getStories({
     content_type: 'tour',
-    version: 'draft',
+    version: process.env.NODE_ENV === 'development' ? 'draft' : 'published',
     starts_with: 'tours/',
   });
   return response.data.stories;

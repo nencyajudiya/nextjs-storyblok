@@ -17,7 +17,7 @@ import { Testimonial } from '@/components/Testimonial';
 const cachedFetch = (input: any, init?: any): Promise<Response> => {
   return fetch(input, {
     ...init,
-    cache: 'no-store',
+    cache: process.env.NODE_ENV === 'development' ? 'no-store' : 'force-cache',
   });
 };
 
