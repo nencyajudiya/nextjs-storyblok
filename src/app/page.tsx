@@ -31,5 +31,10 @@ export default async function HomePage() {
     );
   }
 
-  return <StoryblokStory story={story} />;
+  return (
+    <StoryblokStory
+      bridgeOptions={{ resolveRelations: ['recommended_tours.tours'] }}
+      story={story}
+    />
+  );
 }
