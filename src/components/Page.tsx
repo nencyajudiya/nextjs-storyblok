@@ -1,6 +1,6 @@
 // src/components/Page.tsx
 
-import { StoryblokComponent } from '@storyblok/react';
+import { StoryblokComponent, storyblokEditable } from '@storyblok/react';
 
 export const Page = ({ blok }: any) => {
   const contentBlocks = blok?.blocks;
@@ -8,7 +8,7 @@ export const Page = ({ blok }: any) => {
   if (!contentBlocks) return null;
 
   return (
-    <main>
+    <main {...storyblokEditable(blok)}>
       {contentBlocks.map((nestedBlok: any) => (
         <StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} />
       ))}
